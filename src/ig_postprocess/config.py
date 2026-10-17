@@ -25,6 +25,8 @@ class Config:
     workdir: Path = PROJECT_ROOT
     #: Name of the copied export inside :attr:`workdir`.
     copy_name: str = "instagram_export"
+    #: Explicit destination for the copy; overrides :attr:`workdir` / :attr:`copy_name`.
+    output_dir: Path | None = None
     #: ``strftime`` format used for post folder names.
     date_format: str = "%Y-%m-%d"
     #: Directory that collects duplicate / orphaned media.
@@ -40,6 +42,8 @@ class Config:
     @property
     def copy_dir(self) -> Path:
         """Absolute path of the copied export (also the output tree root)."""
+        if self.output_dir is not None:
+            return self.output_dir
         return self.workdir / self.copy_name
 
 
@@ -59,10 +63,15 @@ def load_config(path: Path | None = None) -> Config:
         value = raw.get(key)
         return Path(value) if isinstance(value, str) else fallback
 
+    def optional_directory(key: str, fallback: Path | None) -> Path | None:
+        value = raw.get(key)
+        return Path(value) if isinstance(value, str) else fallback
+
     return Config(
         source_export=directory("source_export", default.source_export),
         workdir=directory("workdir", default.workdir),
         copy_name=text("copy_name", default.copy_name),
+        output_dir=optional_directory("output_dir", default.output_dir),
         date_format=text("date_format", default.date_format),
         duplicates_dirname=text("duplicates_dirname", default.duplicates_dirname),
         index_name=text("index_name", default.index_name),

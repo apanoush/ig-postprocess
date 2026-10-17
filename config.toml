@@ -1,8 +1,15 @@
 # Tunable parameters for ig-postprocess.
 #
 # Paths are resolved relative to the current working directory, so leave them
-# unset to use the built-in defaults (source: ../instagram_export, workdir: the
-# project root). Only the keys listed here are read.
+# unset to use the built-in defaults. The CLI flags `-s/--source` and
+# `-o/--output` override these values. Only the keys listed here are read.
+
+# Input export folder (default: ../instagram_export).
+# source_export = "/path/to/instagram_export"
+
+# Output folder for the copy and organised tree
+# (default: <workdir>/instagram_export).
+# output_dir = "/path/to/output"
 
 date_format = "%Y-%m-%d"
 duplicates_dirname = "_duplicates"

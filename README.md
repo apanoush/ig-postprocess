@@ -19,6 +19,20 @@ uv run ig-postprocess report     # regenerate reports from an organised tree
 
 Add `--force` to refresh an existing copy.
 
+### Choosing the input and output folders
+
+`-s/--source` selects the input export (default: `../instagram_export`) and
+`-o/--output` selects where the copy and organised tree are written (default:
+`post_processing/instagram_export`). Both work before or after the subcommand:
+
+```bash
+uv run ig-postprocess run -s /path/to/export -o /path/to/output
+uv run ig-postprocess -s /path/to/export -o /path/to/output run
+```
+
+They take precedence over `config.toml`, which in turn overrides the built-in
+defaults.
+
 ## Output layout
 
 ```

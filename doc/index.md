@@ -26,6 +26,18 @@ media can be browsed and reused instead of living in a flat, duplicated tree.
 7. **report** (`report.write_reports`) writes `index.csv`,
    `duplicates_report.json` and `summary.md`.
 
+## Configuration
+
+Input and output locations are resolved with the precedence
+**CLI flags > `config.toml` > built-in defaults**:
+
+* `-s/--source` sets the read-only input export (`source_export`).
+* `-o/--output` sets the destination of the copy and organised tree
+  (`output_dir`, replacing `workdir` + `copy_name`).
+
+All other knobs (`date_format`, report file names, subfolder names) live in
+`config.toml` and fall back to the dataclass defaults in `config.py`.
+
 ## Key data structures
 
 * `export_reader.RawEntry` / `LegacyPost` / `MediaRef`: text-repaired views of
