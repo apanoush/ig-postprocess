@@ -1,0 +1,11 @@
+# Tunable parameters for ig-postprocess.
+#
+# Paths are resolved relative to the current working directory, so leave them
+# unset to use the built-in defaults (source: ../instagram_export, workdir: the
+# project root). Only the keys listed here are read.
+
+date_format = "%Y-%m-%d"
+duplicates_dirname = "_duplicates"
+index_name = "index.csv"
+summary_name = "summary.md"
+duplicates_report_name = "duplicates_report.json"
